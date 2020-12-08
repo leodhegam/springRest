@@ -5,14 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
 
 import javax.persistence.GeneratedValue;
 import lombok.AllArgsConstructor;

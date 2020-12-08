@@ -1,6 +1,4 @@
 package com.spring.rest.springrest.model;
-
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,12 +25,12 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")@NotBlank(message = ApiPosts.DATE_ERROR)
-    Date entrada;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    Date saida;
+    @NotBlank(message = ApiPosts.DATE_ERROR)
+    String entrada;
+    @NotBlank(message = ApiPosts.DATE_ERROR)
+    String saida;
     @Size(min = 1,max = 10) @NotBlank(message = ApiPosts.PEOPLE_NUMBER)
-    Integer qtdPessoas;
+    String qtdPessoas;
 
     @ManyToOne
     @JoinColumn(name="usuario_id")

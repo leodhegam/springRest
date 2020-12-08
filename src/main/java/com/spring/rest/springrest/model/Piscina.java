@@ -28,7 +28,7 @@ public class Piscina {
     String nome;
     @Size(min = 5,max = 60) @NotBlank(message = ApiPosts.TAM_ERROR)
     String tipo;
-    @Size(min = 3,max = 6) @NotBlank(message = ApiPosts.TAM_ERROR_PISCINA)
+    @NotBlank(message = ApiPosts.TAM_ERROR_PISCINA)
     String tamanho;
 
     @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY , orphanRemoval = true , mappedBy = "piscina")
