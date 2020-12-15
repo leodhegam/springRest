@@ -3,8 +3,8 @@ package com.spring.rest.springrest.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import com.spring.rest.springrest.model.Endereco;
-import com.spring.rest.springrest.service.EnderecoService;
+import com.spring.rest.springrest.model.Level;
+import com.spring.rest.springrest.service.LevelService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,55 +20,56 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "X-Total-Count")
-@RequestMapping("/endereco")
-public class EnderecoController {
+@RequestMapping("/level")
 
-    private EnderecoService enderecoService;
+public class LevelController {
+
+    private LevelService levelService;
 
     @Autowired
-    public void setEnderecoService(EnderecoService enderecoService) {
-        this.enderecoService = enderecoService;
+    public void setEnderecoService(LevelService levelService) {
+        this.levelService = levelService;
     }
 
 
     @GetMapping
-    public List<Endereco> listAll () {
-        return enderecoService.findAll();
+    public List<Level> listAll () {
+        return levelService.findAll();
     }
 
     @GetMapping(path = {"/{id}"})
-    public ResponseEntity<Endereco> getOne(@PathVariable Long id) {
-        Optional<Endereco> endereco = enderecoService.findyById(id);
-        if(endereco.isEmpty()){
+    public ResponseEntity<Level> getOne(@PathVariable Long id) {
+        Optional<Level> level = levelService.findyById(id);
+        if(level.isEmpty()){
             return ResponseEntity.notFound().build();
         }else {
-            Endereco record = endereco.get();
+            Level record = level.get();
             return ResponseEntity.ok().body(record);
         }
     }
 
 
     @PostMapping
-    public Endereco insert(@RequestBody Endereco endereco) {
+    public Level insert(@RequestBody Level level) {
 
-        return enderecoService.saveAndFlush(endereco);
+        return levelService.saveAndFlush(level);
 
         // return ResponseEntity.status(201).build();
-        // return ResponseEntity.ok().body(endereco);
+        // return ResponseEntity.ok().body(level);
     }
 
     @PutMapping(path = {"/{id}"})
-    public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody Endereco endereco) {
-        return enderecoService.findyById(id).map( record -> {
-            enderecoService.saveAndFlush(endereco);
-            return ResponseEntity.ok().body(endereco);
+    public ResponseEntity<Level> update(@PathVariable Long id, @RequestBody Level level) {
+        return levelService.findyById(id).map( record -> {
+            levelService.saveAndFlush(level);
+            return ResponseEntity.ok().body(level);
         }).orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete (@PathVariable Long id) {
-        return enderecoService.findyById(id).map(record ->{
-            enderecoService.delete(record.getId());
+        return levelService.findyById(id).map(record ->{
+            levelService.delete(record.getId());
             return ResponseEntity.ok().build();
         }).orElse(ResponseEntity.notFound().build());
     }

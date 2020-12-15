@@ -1,10 +1,8 @@
 package com.spring.rest.springrest.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -29,8 +27,6 @@ public class Endereco {
     
     // @Size(min = 8,max = 8) @NotBlank(message = ApiPosts.CEP_ERROR)
     String cep;
-
-    
-    @OneToOne(mappedBy = "endereco", cascade = CascadeType.PERSIST)
-    Usuario usuario;
+    // @OneToOne(mappedBy = "endereco", cascade = CascadeType.PERSIST)
+    // Usuario usuario;
 }

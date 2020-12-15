@@ -7,9 +7,9 @@ import com.spring.rest.springrest.model.Piscina;
 
 import com.spring.rest.springrest.service.PiscinaService;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "X-Total-Count")
 @RequestMapping("/piscina")
 public class PiscinaController {
     
@@ -29,8 +30,6 @@ public class PiscinaController {
     public void setPiscinaService(PiscinaService piscinaService) {
         this.piscinaService = piscinaService;
     }
-
-
     @GetMapping
     public List<Piscina> listAll () {
         return piscinaService.findAll();
@@ -49,11 +48,11 @@ public class PiscinaController {
 
 
     @PostMapping
-    public ResponseEntity<Piscina> insert(@RequestBody Piscina piscina) {
+    public Piscina insert(@RequestBody Piscina piscina) {
 
-        piscinaService.saveAndFlush(piscina);
+       return  piscinaService.saveAndFlush(piscina);
 
-        return ResponseEntity.status(201).build();
+        // return ResponseEntity.status(201).build();
         // return ResponseEntity.ok().body(piscina);
     }
 

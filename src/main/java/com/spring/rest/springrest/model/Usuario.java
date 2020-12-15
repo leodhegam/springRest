@@ -1,7 +1,5 @@
 package com.spring.rest.springrest.model;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 import javax.validation.constraints.Email;
@@ -29,14 +27,12 @@ public class Usuario {
 
     @Size(min = 8 , max = 20) @NotBlank(message = ApiPosts.PASSWORD_ERROR)
     String senha;
-    
-    Boolean flag;
 
-    @OneToOne(cascade = {CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToOne(cascade = {CascadeType.ALL} , orphanRemoval = true)
     @JoinColumn(name="endereco_id")
     Endereco endereco;
     
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true , mappedBy = "usuario")
-    List<Reserva> reserva;
+    // @OneToMany(cascade = CascadeType.ALL)
+    // List<Reserva> reserva;
     
 }
